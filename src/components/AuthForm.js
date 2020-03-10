@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Text, Button, Input } from "react-native-elements";
 import { View, StyleSheet } from "react-native";
+import { NavigationEvents } from "react-navigation";
 import Spacer from "./Spacer";
-const AuthForm = ({ submitLabel, onSubmit, headerText }) => {
+
+const AuthForm = ({ submitLabel, onSubmit, headerText, onBlur }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <>
+      <NavigationEvents onWillBlur={onBlur} />
       <Spacer>
         <Text h3>{headerText}</Text>
       </Spacer>

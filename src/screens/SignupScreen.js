@@ -4,16 +4,17 @@ import { Container } from "../styledComponents";
 import { Context as AuthContext } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
-import { NavigationEvents } from "react-navigation";
+
 const SignupScreen = ({ navigation }) => {
-  const { signup, clearErrors } = useContext(AuthContext);
+  const { signup, clearErrors, tryLocalSignin } = useContext(AuthContext);
+
   return (
     <Container>
-      <NavigationEvents onDidFocus={clearErrors} />
       <AuthForm
         onSubmit={signup}
         submitLabel={"Sign Up"}
         headerText={"Sign Up for Tracker"}
+        onBlur={clearErrors}
       />
       <NavLink
         text={"Already have an account? Sign in instead"}

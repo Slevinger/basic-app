@@ -47,6 +47,17 @@ const signup = dispatch => async ({ email, password }) => {
   }
 };
 
+const tryLocalSignin = dispatch => async () => {
+  const token = await AsyncStorage.getItem("token");
+  if (token) {
+    console.log(token);
+    dispatch({ type: "login_success", payload: token });
+    navigate("mainFlow");
+  } else {
+    navigate("loginFlow");
+  }
+};
+
 const clearError = dispatch => index => {
   dispatch({ type: "clear_error", payload: index });
 };
@@ -70,12 +81,13 @@ const signin = dispatch => async ({ email, password }) => {
   }
 };
 
-const signout = dispatch => () => {
+const signout = dispatch => async () => {
+  await AsyncStorage.removeItem("token");
   dispatch({ type: "logout" });
 };
 
 export const { Provider, Context } = createDataContext(
   authReducder,
-  { signin, signout, signup, clearError, clearErrors },
+  { signin, signout, signup, clearError, clearErrors, tryLocalSignin },
   { token: null, errorMessages: [] }
 );

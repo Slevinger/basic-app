@@ -27,7 +27,9 @@ const ErrorHandler = ({ children }) => {
       style={{
         flex: 1,
         display: "flex",
-        borderWidth: 10
+        width: "100%",
+        borderWidth: 1,
+        margin: -1
       }}
     >
       <ErrorDialog />
