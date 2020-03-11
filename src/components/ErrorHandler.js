@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ErrorDialog = () => {
   const {
@@ -23,18 +24,18 @@ const ErrorDialog = () => {
 
 const ErrorHandler = ({ children }) => {
   return (
-    <View
+    <SafeAreaView
+      forceInset={{ top: "always" }}
       style={{
         flex: 1,
         display: "flex",
-        width: "100%",
         borderWidth: 1,
         margin: -1
       }}
     >
       <ErrorDialog />
       {children}
-    </View>
+    </SafeAreaView>
   );
 };
 
